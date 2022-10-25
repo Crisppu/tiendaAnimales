@@ -18,11 +18,11 @@ export function valida(input){ // exportamos la funcion
 /*nos sirve para verificar si existe el input con el nombre de data-tipo="nacimiento" esto es un objeto*/
 const validadores = { //este objeto es para validar para que coincidan con el tipo y el nombre que le colocamos en el html "nacimiento"
     /* arrow function Si el cuerpo tiene una declaración o expresión única, puede escribir la función de flecha como */
-   //nacimiento: input => validarNacimiento(input), //funcion anonima,
+   nacimiento: input => validarNacimiento(input), //funcion anonima,
 
-   nacimiento: function (input){
-     validarNacimiento(input)
-     }
+//    nacimiento: function (input){
+//      validarNacimiento(input)
+//      }
 };
 
 function validarNacimiento(input) {
