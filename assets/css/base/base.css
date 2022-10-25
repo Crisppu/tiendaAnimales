@@ -1,6 +1,9 @@
+/* codigo del profe corregir
 @import url("./_reset.css");
 @import url(./_variables.css);
+*/
 @import url(./variables.css);
+@import url(./reset.css);
 
 body {
   background-color: var(--secondary-color);
