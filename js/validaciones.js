@@ -17,32 +17,38 @@ export function valida(input) { // exportamos la funcion
     //introducir $0 y $0.validity en la consola del navegador
     if (input.validity.valid) { //verificamos si e valid es falso o verdadero
         input.parentElement.classList.remove("input-container--invalid");
+        input.parentElement.querySelector(".input-message-error").innerHTML = ""; //modificamos el span
     } else {
         input.parentElement.classList.add("input-container--invalid")
+        input.parentElement.querySelector(".input-message-error").innerHTML = mostrarMensajeDeError(tipoDeInput, input);//modificamos el span
+
     }
 }
+//creamos un arreglo para no generar muchos if
+const tipoDeErrores = ["valueMissing","typeMismatch","patternMismatch","customError"];
+
 //creamos un objeto para mostrar que mensajes colocar
 //introducir $0 y $0.validity en la consola del navegador
 const mensajesDeError = {
     nombre: {
          //introducir $0 y $0.validity en la consola del navegador
-        valueMissing: "este campo no debe de estar vacio" // valueMissing en caso de que el campo este vacio
+        valueMissing: "este campo nombre no debe de estar vacio" // valueMissing en caso de que el campo este vacio
     },
     email: {
         //introducir $0 y $0.validity en la consola del navegador
-        valueMissing: "este campo no debe de estar vacio",
+        valueMissing: "este campo email no debe de estar vacio",
         typeMismatch: "el correo no es valido"  //este tipo el typeMismatch hace referencia a que es correo electronico
     },
     password:{
         //introducir $0 y $0.validity en la consola del navegador
-        valueMissing: "este campo no debe de estar vacio",
+        valueMissing: "este campo contraseña no debe de estar vacio",
         //traemos el texto que estaba dentro del titulo en el html input name="password"
         patternMismatch:"al menos 5 caracteres, maximo 12, debe contener una letra minuscula, una letra MAYUSCULA, un numero y no debe tener caracteres especiales"
     },
     //input de fecha
     nacimiento:{
          //introducir $0 y $0.validity en la consola del navegador
-        valueMissing: "este campo no debe de estar vacio",
+        valueMissing: "este campo de fecha no debe de estar vacio",
         customError:"Debes de tener al menos 18 años"
     },
 
@@ -59,6 +65,19 @@ const validadores = { //este objeto es para validar para que coincidan con el ti
     //      }
 };
 
+function mostrarMensajeDeError(tipoDeInput, input){
+let mensaje= "";
+tipoDeErrores.forEach(error => {
+    if(input.validity[error]){ // comparamos con el input que es lo que trae en el ejemplo valueMissing
+    console.log(error);
+    console.log(input.validity[error]);
+    console.log(mensajesDeError[tipoDeInput][error]);
+    mensaje = mensajesDeError[tipoDeInput][error];
+    }
+});
+
+return mensaje;
+}
 function validarNacimiento(input) {
     //const fechaCliente = input.value;
     //console.log(fechaCliente) // nos muestra la fecha 2022/01/01
